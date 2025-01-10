@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeAura</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    header {
+      background: #f5ebe0;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    header .logo h1 {
+      font-size: 2rem;
+      color: #8d6e63;
+    }
+
+    header .logo p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    header .dark-mode-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    nav {
+      background: #e0dcd1;
+      padding: 10px;
+    }
+
+    nav .menu-toggle {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    nav .menu-items {
+      display: none;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav ul li {
+      padding: 10px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    nav .has-submenu ul {
+      display: none;
+      list-style: none;
+      padding-left: 20px;
+    }
+
+    nav .has-submenu:hover ul {
+      display: block;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .furniture-gallery img {
+      width: 30%;
+      margin: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      transition: transform 0.3s;
+    }
+
+    .furniture-gallery img:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background: #e0dcd1;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9rem;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode header {
+      background: #1e1e1e;
+    }
+
+    body.dark-mode nav {
+      background: #1e1e1e;
+    }
+
+    body.dark-mode footer {
+      background: #1e1e1e;
+    }
+
+    body.dark-mode .furniture-gallery img {
+      filter: brightness(90%);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <h1>HomeAura</h1>
+      <p>Your house, your aura, your style.</p>
+    </div>
+    <button id="dark-mode-toggle" class="dark-mode-button">🌙</button>
+  </header>
+
+  <nav class="menu">
+    <button class="menu-toggle">☰ Menu</button>
+    <ul class="menu-items">
+      <li><a href="#home">Home</a></li>
+      <li class="has-submenu">
+        <a href="#">Category</a>
+        <ul class="submenu">
+          <li><a href="#chairs">Chairs</a></li>
+          <li><a href="#couches">Couches</a></li>
+          <li><a href="#tables">Tables</a></li>
+        </ul>
+      </li>
+      <li><a href="#bag">Bag</a></li>
+      <li><a href="#wallet">Wallet & Coupons</a></li>
+      <li><a href="#social">Social & Links</a></li>
+      <li><a href="#vlogs">Vlogs</a></li>
+      <li><a href="#account">Account Management</a></li>
+      <li><a href="#settings">Settings</a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <section id="home">
+      <h2>Welcome to HomeAura</h2>
+      <p>Explore our collection of beautiful furniture tailored for your home.</p>
+      <div class="furniture-gallery">
+        <img src="https://via.placeholder.com/300x200?text=Chair" alt="Chair">
+        <img src="https://via.placeholder.com/300x200?text=Couch" alt="Couch">
+        <img src="https://via.placeholder.com/300x200?text=Table" alt="Table">
+      </div>
+    </section>
+
+    <section id="build-room">
+      <h2>Build Your Room</h2>
+      <p>Customize your room with our interactive tools.</p>
+      <button class="btn">Start Building</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 HomeAura. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Dark Mode Toggle
+    document.getElementById("dark-mode-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+
+    // Menu Toggle
+    document.querySelector(".menu-toggle").addEventListener("click", () => {
+      const menuItems = document.querySelector(".menu-items");
+      menuItems.style.display = menuItems.style.display === "flex" ? "none" : "flex";
+    });
+  </script>
+</body>
+</html>
