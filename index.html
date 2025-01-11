@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HomeAura</title>
+  <link href="https://fonts.googleapis.com/css2?family=Economica:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Economica', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fefaf6;
+      color: #333;
+      transition: all 0.3s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff8f1;
+      padding: 20px 40px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      margin: 0 auto;
+      font-size: 2rem;
+      color: #8d6e63;
+      text-align: center;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-left button {
+      padding: 10px 20px;
+      background: #8d6e63;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .header-left button:hover {
+      background: #755847;
+    }
+
+    .dark-mode-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 60px;
+      height: 30px;
+      background: #ccc;
+      border-radius: 15px;
+      padding: 5px;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.3s;
+    }
+
+    .dark-mode-toggle .circle {
+      width: 20px;
+      height: 20px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      left: 5px;
+      transition: all 0.3s;
+    }
+
+    .dark-mode-active .dark-mode-toggle {
+      background: #333;
+    }
+
+    .dark-mode-active .dark-mode-toggle .circle {
+      left: 35px;
+      background: #fff;
+    }
+
+    .menu-bubble {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #8d6e63;
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .menu-bubble img {
+      width: 25px;
+      height: 25px;
+    }
+
+    .menu-icons {
+      position: fixed;
+      bottom: 80px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      display: none;
+    }
+
+    .menu-icons .menu-button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .menu-icons .menu-button img {
+      width: 30px;
+      height: 30px;
+    }
+
+    .menu-icons .menu-button:hover {
+      transform: scale(1.1);
+    }
+
+    main {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .section {
+      display: none;
+      margin: 20px auto;
+      max-width: 800px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #fff8f1;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Checkout Section */
+    .checkout-form {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .checkout-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .checkout-form .same-address {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkout-form .same-address input {
+      margin-right: 10px;
+    }
+
+    .slide-button {
+      position: relative;
+      width: 200px;
+      height: 40px;
+      background: #ddd;
+      border-radius: 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .slide-button .slider {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: #8d6e63;
+      border-radius: 50%;
+      left: 0;
+      transition: all 0.3s;
+    }
+
+    .slide-button.active .slider {
+      left: 160px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <button id="loginButton" onclick="showLoginModal()">Login/Signup</button>
+    </div>
+    <h1>HomeAura</h1>
+    <div class="dark-mode-toggle" id="darkModeToggle">
+      <div class="circle"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Home Section -->
+    <section id="home" class="section active">
+      <h2>Welcome to HomeAura</h2>
+      <p>Discover the perfect furniture for your home.</p>
+      <div>
+        <h3>Example Products:</h3>
+        <div>
+          <h4>Product Name: Elegant Chair</h4>
+          <p>Description: A modern chair perfect for your living room or office.</p>
+          <button onclick="addToBag('Elegant Chair')">Add to Bag</button>
+        </div>
+        <div>
+          <h4>Product Name: Luxury Sofa</h4>
+          <p>Description: A plush, comfortable sofa for your living space.</p>
+          <button onclick="addToBag('Luxury Sofa')">Add to Bag</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Furniture Section -->
+    <section id="furniture" class="section">
+      <h2>Furniture Types</h2>
+      <ul>
+        <li>Chairs</li>
+        <li>Sofas</li>
+        <li>Tables</li>
+        <li>Beds</li>
+        <li>Desks</li>
+      </ul>
+    </section>
+
+    <!-- Bag Section -->
+    <section id="bag" class="section">
+      <h2>Your Bag</h2>
+      <ul id="bagItems"></ul>
+      <div class="checkout-form">
+        <h3>Checkout</h3>
+        <input type="text" id="cardName" placeholder="Cardholder Name">
+        <input type="text" id="cardNumber" placeholder="Card Number">
+        <input type="text" id="cvs" placeholder="CVS">
+        <input type="text" id="shippingAddress" placeholder="Shipping Address">
+        <div class="same-address">
+          <input type="checkbox" id="sameAddress" onclick="toggleAddress()"> Same as Shipping Address
+        </div>
+        <input type="text" id="billingAddress" placeholder="Billing Address">
+        <div class="slide-button" id="checkoutButton" onclick="finalizeCheckout()">
+          <div class="slider"></div>
+        </div>
+        <p id="checkoutStatus"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 HomeAura. All rights reserved.</p>
+  </footer>
+
+  <div class="menu-bubble" id="menuBubble">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/menu--v1.png" alt="Menu">
+  </div>
+
+  <div class="menu-icons" id="menuIcons">
+    <div class="menu-button" onclick="navigateTo('home')">
+      <img src="https://img.icons8.com/ios/50/333333/home.png" alt="Home">
+    </div>
+    <div class="menu-button" onclick="navigateTo('bag')">
+      <img src="https://img.icons8.com/ios/50/333333/shopping-cart.png" alt="Bag">
+    </div>
+    <div class="menu-button" onclick="navigateTo('furniture')">
+      <img src="https://img.icons8.com/ios/50/333333/furniture.png" alt="Furniture">
+    </div>
+  </div>
+
+  <script>
+    const bagItems = [];
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const menuBubble = document.getElementById("menuBubble");
+    const menuIcons = document.getElementById("menuIcons");
+    const sections = document.querySelectorAll(".section");
+    const sameAddress = document.getElementById("sameAddress");
+    const billingAddress = document.getElementById("billingAddress");
+    const checkoutButton = document.getElementById("checkoutButton");
+    const checkoutStatus = document.getElementById("checkoutStatus");
+
+    function navigateTo(sectionId) {
+      sections.forEach(section => section.classList.remove("active"));
+      document.getElementById(sectionId).classList.add("active");
+      menuIcons.style.display = "none";
+    }
+
+    function addToBag(product) {
+      bagItems.push(product);
+      const bagItemsList = document.getElementById("bagItems");
+      bagItemsList.innerHTML = bagItems.map(item => `<li>${item}</li>`).join('');
+      alert(`${product} added to your bag!`);
+    }
+
+    function toggleAddress() {
+      billingAddress.style.display = sameAddress.checked ? "none" : "block";
+    }
+
+    function finalizeCheckout() {
+      checkoutButton.classList.toggle("active");
+      if (checkoutButton.classList.contains("active")) {
+        checkoutStatus.textContent = "Transaction Completed!";
+      } else {
+        checkoutStatus.textContent = "";
+      }
+    }
+
+    darkModeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      darkModeToggle.classList.toggle("dark-mode-active");
+    });
+
+    menuBubble.addEventListener("click", () => {
+      menuIcons.style.display = menuIcons.style.display === "flex" ? "none" : "flex";
+    });
+  </script>
+</body>
+</html>p
